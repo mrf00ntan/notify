@@ -1,0 +1,53 @@
+server:
+  port: 8084
+
+#OnlyDev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  #Database
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notify_service_db
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+    username: postgres
+    password: qweqwe
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: Asia/Almaty
+  #Mail Props
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mrf00ntan@gmail.com
+    password: 19981998muhamed
+    properties:
+      mail:
+        smtp:
+          starttls:
+            auth: true
+            enable: true
+
+#Eureka
+eureka:
+  instance:
+    appname: notify-service
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    lease-expiration-duration-in-seconds: 5
+  client:
+    fetchRegistry: true
+    registry-fetch-interval-seconds: 5
+    serviceUrl:
+      defaultZone:  http://entry-eureka-server.kz:9000/eureka
